@@ -1,0 +1,187 @@
+ARTI 303 - Programming for AI
+Lab 04 - Variables in Prolog
+
+
+============================================================
+TASK 1 - UNIFICATION
+============================================================
+
+1. Query:
+?- house = house.
+
+Result:
+true.
+
+Explanation:
+Both terms are identical atoms, so they can be unified.
+
+
+2. Query:
+?- house = abc.
+
+Result:
+false.
+
+Explanation:
+house and abc are different atoms, so they cannot be unified.
+
+
+3. Query:
+?- edge(a,b) = edge(C,b).
+
+Result:
+C = a.
+
+Explanation:
+Both structures have the same predicate and number of arguments.
+C can be unified with a.
+
+
+4. Query:
+?- edge(a,d) = edge(C,B).
+
+Result:
+C = a,
+B = d.
+
+Explanation:
+Both structures have the same predicate and number of arguments.
+C is unified with a and B is unified with d.
+
+
+5. Query:
+?- edge(C,B) = edge(a,d).
+
+Result:
+C = a,
+B = d.
+
+Explanation:
+The variables C and B can be unified with the corresponding
+values a and d.
+
+
+6. Query:
+?- edge(A,f(g,h)) = edge(a,B).
+
+Result:
+A = a,
+B = f(g,h).
+
+Explanation:
+A can be unified with a, and B can be unified with the
+structure f(g,h).
+
+
+7. Query:
+?- edge(A,A) = edge(b,c).
+
+Result:
+false.
+
+Explanation:
+The same variable A must have the same value in both positions.
+It cannot be unified with both b and c because they are different.
+
+
+8. Query:
+?- edge(A,A) = edge(b,b).
+
+Result:
+A = b.
+
+Explanation:
+Both positions contain b, so A can be unified with b in
+both positions.
+
+
+9. Query:
+?- A = B, B = f.
+
+Result:
+A = B,
+B = f.
+
+Explanation:
+A and B are unified with each other, and B is then unified
+with f, so they represent the same value.
+
+
+10. Query:
+?- A = B, B = f, A = e.
+
+Result:
+false.
+
+Explanation:
+A and B are first unified, and B is unified with f.
+Therefore A also represents f and cannot then be unified
+with the different atom e.
+
+
+============================================================
+TASK 2 - FAMILY QUERIES
+============================================================
+
+1. Show the names of all females.
+
+Query:
+?- female(X).
+
+Result:
+X = sara ;
+X = nora.
+
+
+2. Show whether there is any male.
+
+Query:
+?- male(_).
+
+Result:
+true.
+
+
+3. Show the grandparent of Faisal.
+
+Query:
+?- parent(X, Y), parent(Y, faisal).
+
+Result:
+X = ali,
+Y = muhammad.
+
+Therefore, Ali is the grandparent of Faisal.
+
+
+4. Show all daughters of Ahmad.
+
+Query:
+?- parent(ahmad, X), female(X).
+
+Result:
+X = sara ;
+X = nora.
+
+
+5. Show whether Ahmad and Muhammad have a common parent.
+
+Query:
+?- parent(X, ahmad), parent(X, muhammad).
+
+Result:
+X = ali.
+
+Therefore, Ahmad and Muhammad have a common parent, Ali.
+
+
+6. Show whether Khan is the brother of Nora.
+
+Query:
+?- parent(X, khan), parent(X, nora), male(khan).
+
+Result:
+X = ahmad.
+
+Therefore, Khan is the brother of Nora.
+
